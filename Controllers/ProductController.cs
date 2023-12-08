@@ -56,21 +56,23 @@ namespace TestTime.Controllers
             return View("Delete", roleProductDto);
         }
 
+     
         [Authorize(Roles = "ADMIN")]
         [HttpGet] // Remove this line if you have it
-        public IActionResult Create()
+        public async Task<ViewResult> Create()
         {
-            return View("Create");
+            return View();
         }
         [HttpPost]
         [Authorize(Roles = "ADMIN")]
         public async Task<IActionResult> Create(string userId, string userName, string role, ProductDto productDto)
         {
-            if (!ModelState.IsValid) return View("Index");
-
+       
             await _productService.Add(userId, userName, productDto);
             var roleProductDto = await _productService.RetrieveDto(userId, userName, role);
-            return View("Create", roleProductDto);
+
+            return RedirectToAction("Index");
+
         }
     }
 }
