@@ -1,4 +1,4 @@
-﻿@model TestTime.Dto.RoleAndProductDto
+@model TestTime.Dto.RoleAndProductDto
 @using Microsoft.AspNetCore.Identity
 
 @{
@@ -10,9 +10,11 @@
         <h1 class="fs-5 text-warning">Add Product</h1>
 
         <!-- Validation Alerts -->
-        @foreach (var alert in new[] { ("titleAlert", "Please enter a valid title. Allowed characters: alphanumeric and space."),
-                                        ("quantityAlert", "Please enter a valid quantity. Allowed characters: numbers."),
-                                        ("priceAlert", "Please enter a valid price. Allowed characters: numbers and dot for decimals.") })
+        @foreach (var alert in new[] {
+            ("titleAlert", "Please enter a valid title. Allowed characters: alphanumeric and space."),
+            ("quantityAlert", "Please enter a valid quantity. Allowed characters: numbers."),
+            ("priceAlert", "Please enter a valid price. Allowed characters: numbers and dot for decimals.")
+        })
         {
             <div id="@alert.Item1" class="alert alert-danger" role="alert" style="display: none;">
                 @alert.Item2
@@ -20,9 +22,9 @@
         }
 
         <!-- Hidden Fields -->
-        <input type="hidden" name="userId" value="@Model.Id" />
+        @*<input type="hidden" name="userId" value="@Model.Id" />
         <input type="hidden" name="userName" value="@Model.Name" />
-        <input type="hidden" name="role" value="@Model.Role" />
+        <input type="hidden" name="role" value="@Model.Role" />*@
 
         <!-- Input Fields -->
         <div class="mb-3">
