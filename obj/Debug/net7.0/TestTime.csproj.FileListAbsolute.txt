@@ -63,3 +63,4 @@ C:\Users\nemo\Desktop\TestTime\obj\Debug\net7.0\ref\TestTime.dll
 C:\Users\nemo\Desktop\TestTime\bin\Debug\net7.0\FluentValidation.dll
 C:\Users\nemo\Desktop\TestTime\bin\Debug\net7.0\AspNetCoreHero.EntityFrameworkCore.AuditTrail.dll
 C:\Users\nemo\Desktop\TestTime\bin\Debug\net7.0\Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll
+C:\Users\nemo\Desktop\TestTime\obj\Debug\net7.0\TestTime.sourcelink.json
