@@ -34,7 +34,7 @@ This project is built on Windows 10 OS.
 6. Run the Application
    `` dotnet run ``
 
-7.  Default Admin, Manager and User:
+7.  Default Admin and User:
        Admin 
         name: admin1@gmail.com; 
         password: Admin1@1234?;
