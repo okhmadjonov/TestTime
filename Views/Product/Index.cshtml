@@ -1,0 +1,81 @@
+﻿@model TestTime.Dto.RoleAndProductDto
+
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Include your CSS and other head elements here -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="text-center mt-3">Product Control App</h1>
+                <br />
+
+                <div style="display:flex;flex-direction:row;gap:20px;align-items:center">
+                    @if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole("ADMIN"))
+                    {
+                        <div class="add__btn-div">
+                            <a style="padding:8px 50px; text-decoration:none" asp-controller="Product" asp-action="Create" class="btn btn-info">Add Product</a>
+                        </div>
+                    }
+
+                    @if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole("ADMIN"))
+                    {
+                        <div style="margin:10px">
+                            <a style="padding:8px 50px; text-decoration:none" class="btn btn-danger" asp-action="Index" asp-controller="Audit">Audit</a>
+                        </div>
+                    }
+                </div>
+                <br />
+
+                @if (Model != null && Model.Products.Any())
+                {
+                    <table class="table" id="tasksTable">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Title</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Total Price</th>
+                                @if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole("ADMIN"))
+                                {
+                                    <th>Actions</th>
+                                }
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var product in Model.Products)
+                            {
+                                <tr>
+                                    <td>@product.Id</td>
+                                    <td>@product.Title</td>
+                                    <td>@product.Quantity</td>
+                                    <td>@product.Price</td>
+                                    <td>@product.TotalPrice</td>
+                                    @if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole("ADMIN"))
+                                    {
+                                        <td>
+                                            <a href="@Url.Action("Edit", new { id = product.Id })" class="btn btn-warning"><i class="fa fa-pen"></i></a>
+                                            <a href="@Url.Action("Delete", new { id = product.Id })" class="btn btn-danger"> <i class="fa fa-trash"></i></a>
+                                        </td>
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <p style="font-size:26px; color:darkred">No tasks available.</p>
+                }
+            </div>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

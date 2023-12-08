@@ -1,0 +1,51 @@
+﻿@model TestTime.Dto.RoleAndProductDto
+@using Microsoft.AspNetCore.Identity
+
+@{
+    ViewData["title"] = "Update Page";
+}
+
+<div class="container">
+    <form method="post" asp-action="Update" asp-controller="Product" id="productForm" class="container mt-3">
+        <h1 class="fs-5 text-warning">Update Product</h1>
+
+        <!-- Validation Alerts -->
+        @foreach (var alert in new[] { ("titleAlert", "Please enter a valid title. Allowed characters: alphanumeric and space."),
+                                        ("quantityAlert", "Please enter a valid quantity. Allowed characters: numbers."),
+                                        ("priceAlert", "Please enter a valid price. Allowed characters: numbers and dot for decimals.") })
+        {
+            <div id="@alert.Item1" class="alert alert-danger" role="alert" style="display: none;">
+                @alert.Item2
+            </div>
+        }
+
+        <!-- Hidden Fields -->
+        <input type="hidden" name="userId" value="@Model.Id" />
+        <input type="hidden" name="userName" value="@Model.Name" />
+        <input type="hidden" name="role" value="@Model.Role" />
+        <input type="hidden" name="id" value="@Model.Products.First().Id" />
+
+        <!-- Input Fields -->
+        <div class="mb-3">
+            <label for="productDto.Title" class="form-label">Title</label>
+            <input oninput="validateInput(this, 'titleAlert')" onfocus="hideValidationAlert('titleAlert')"
+                   id="productDto.Title" name="productDto.Title" class="form-control" value="@Model.Products.First().Title" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="productDto.Quantity" class="form-label">Quantity</label>
+            <input oninput="validateQuantity(this, 'quantityAlert')" onfocus="hideValidationAlert('quantityAlert')"
+                   id="productDto.Quantity" name="productDto.Quantity" class="form-control" value="@Model.Products.First().Quantity" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="productDto.Price" class="form-label">Price</label>
+            <input oninput="validatePrice(this, 'priceAlert')" onfocus="hideValidationAlert('priceAlert')"
+                   id="productDto.Price" name="productDto.Price" class="form-control" title="Enter a valid integer or double" value="@Model.Products.First().Price" required />
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-outline-warning">Update</button>
+        <a asp-action="Index" asp-controller="Product" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
