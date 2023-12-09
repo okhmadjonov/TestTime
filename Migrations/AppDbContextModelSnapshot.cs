@@ -50,13 +50,13 @@ namespace TestTime.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "20652656-bb2e-4281-a3aa-5582f642b16f",
+                            Id = "7451c6df-6742-4068-b886-dc0fbe19ec59",
                             Name = "ADMIN",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "3578bb33-51d4-4a31-98cc-ec4e0e6d26d0",
+                            Id = "9078b9d2-471c-427b-870f-532e3d58e530",
                             Name = "USER",
                             NormalizedName = "USER"
                         });
@@ -210,8 +210,11 @@ namespace TestTime.Migrations
 
             modelBuilder.Entity("TestTime.Models.Product", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("text");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<double>("Price")
                         .HasColumnType("double precision");
@@ -232,7 +235,7 @@ namespace TestTime.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "1",
+                            Id = 1,
                             Price = 74.090000000000003,
                             Quantity = 55,
                             Title = "HDD 1TB",
@@ -240,7 +243,7 @@ namespace TestTime.Migrations
                         },
                         new
                         {
-                            Id = "2",
+                            Id = 2,
                             Price = 190.99000000000001,
                             Quantity = 102,
                             Title = "HDD SSD 512GB",
@@ -248,7 +251,7 @@ namespace TestTime.Migrations
                         },
                         new
                         {
-                            Id = "3",
+                            Id = 3,
                             Price = 80.319999999999993,
                             Quantity = 47,
                             Title = "RAM DDR4 16GB",

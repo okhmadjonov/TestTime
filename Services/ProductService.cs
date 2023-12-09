@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using TestTime.Data;
 using TestTime.Dto;
@@ -10,25 +11,28 @@ namespace TestTime.Services
     public class ProductService : IProductRepository
     {
         private readonly AppDbContext _context;
+        private readonly UserManager<User> _userManager;
         private readonly IConfiguration _configuration;
 
 
-        public ProductService(AppDbContext appDbContext, IConfiguration configuration)
+        public ProductService(AppDbContext appDbContext, IConfiguration configuration, UserManager<User> userManager)
         {
             _context = appDbContext;
             _configuration = configuration;
+            _userManager = userManager;
             
         }
-
-        //Get all products
-
-        public async Task<List<Product>> GetAll() { 
-            return await _context.Products.ToListAsync();
+        public async Task<List<Product>> GetAllProducts() {
+            return await _context.Products.OrderBy(p => p.Id).ToListAsync();
         }
 
-        public async Task<Product> Get(string id) { 
-            var product = await _context.Products.FirstOrDefaultAsync(p=> p.Id==id);
-              return product ?? throw new  BadHttpRequestException("Product not found.");
+        public async Task<Product> GetSingleProduct(int id) {
+            var task = await _context.Products.FirstOrDefaultAsync(x => x.Id == id);
+            if (task is null)
+            {
+                throw new BadHttpRequestException("Task not found");
+            }
+            return task ?? throw new BadHttpRequestException("Task not found");
         }
 
 
@@ -46,7 +50,7 @@ namespace TestTime.Services
         }
 
 
-        public async Task Update(string userId, string userName, string id, ProductDto productDto)
+        public async Task Update(string userId, string userName, int id, ProductDto productDto)
         {
             var vat = _configuration["Vat"]!;
 
@@ -66,7 +70,7 @@ namespace TestTime.Services
             }
         }
 
-        public async Task Delete(string userId, string userName, string id)
+        public async Task Delete(int id, string userId, string userName)
         {
             var product = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
             if (product is not null)
@@ -83,19 +87,5 @@ namespace TestTime.Services
             return Task.FromResult((quantity * price) * (1 + Convert.ToDouble(vat)));
         }
 
-        public async Task<RoleAndProductDto> RetrieveDto(string userId, string userName, string role)
-        {
-            RoleAndProductDto roleProductDto = new RoleAndProductDto
-            {
-                Id = userId,
-                Name = userName,
-                Role = role,
-                Products = await GetAll()
-            };
-
-            roleProductDto.Products = roleProductDto.Products.OrderBy(p => p.Id).ToList();
-
-            return roleProductDto;
-        }
     }
 }

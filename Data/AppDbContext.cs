@@ -21,6 +21,7 @@ namespace TestTime.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<Audit> Audits { get; set; }
         public IServiceProvider Services { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -28,9 +29,9 @@ namespace TestTime.Data
             builder.ApplyConfiguration<IdentityRole>(new RoleConfiguration(Services));
             builder.Entity<Product>().HasData(
 
-           new Product { Id = "1", Title = "HDD 1TB", Quantity = 55, Price = 74.09, TotalPrice = 411569.95 },
-           new Product { Id = "2", Title = "HDD SSD 512GB", Quantity = 102, Price = 190.99, TotalPrice = 1967578.98 },
-           new Product { Id = "3", Title = "RAM DDR4 16GB", Quantity = 47, Price = 80.32, TotalPrice = 38127904 }
+           new Product { Id = 1, Title = "HDD 1TB", Quantity = 55, Price = 74.09, TotalPrice = 411569.95 },
+           new Product { Id = 2, Title = "HDD SSD 512GB", Quantity = 102, Price = 190.99, TotalPrice = 1967578.98 },
+           new Product { Id = 3, Title = "RAM DDR4 16GB", Quantity = 47, Price = 80.32, TotalPrice = 38127904 }
                 );
         }
 
@@ -41,7 +42,6 @@ namespace TestTime.Data
             var result = await base.SaveChangesAsync();
             return result;
         }
-
         private void OnBeforeSaveChanges(string userId, string userName)
         {
             ChangeTracker.DetectChanges();
@@ -69,12 +69,12 @@ namespace TestTime.Data
                     switch (entry.State)
                     {
                         case EntityState.Added:
-                            auditEntry.AuditType = Models.AuditType.Create;
+                            auditEntry.AuditType = AuditType.Create;
                             auditEntry.NewValues[propertyName] = property.CurrentValue!;
                             break;
 
                         case EntityState.Deleted:
-                            auditEntry.AuditType = Models.AuditType.Delete;
+                            auditEntry.AuditType = AuditType.Delete;
                             auditEntry.OldValues[propertyName] = property.OriginalValue!;
                             break;
 
@@ -82,7 +82,7 @@ namespace TestTime.Data
                             if (property.IsModified)
                             {
                                 auditEntry.ChangedColumns.Add(propertyName);
-                                auditEntry.AuditType = Models.AuditType.Update;
+                                auditEntry.AuditType = AuditType.Update;
                                 auditEntry.OldValues[propertyName] = property.OriginalValue!;
                                 if (property.CurrentValue != null)
                                     auditEntry.NewValues[propertyName] = property.CurrentValue;
@@ -96,6 +96,5 @@ namespace TestTime.Data
                 Audits.Add(auditEntry.ToAudit());
             }
         }
-
     }
 }

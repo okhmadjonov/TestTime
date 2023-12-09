@@ -78,7 +78,8 @@ namespace TestTime.Migrations
                 name: "Products",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "text", nullable: false),
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Title = table.Column<string>(type: "text", nullable: true),
                     Quantity = table.Column<int>(type: "integer", nullable: false),
                     Price = table.Column<double>(type: "double precision", nullable: false),
@@ -200,8 +201,8 @@ namespace TestTime.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "20652656-bb2e-4281-a3aa-5582f642b16f", null, "ADMIN", "ADMIN" },
-                    { "3578bb33-51d4-4a31-98cc-ec4e0e6d26d0", null, "USER", "USER" }
+                    { "7451c6df-6742-4068-b886-dc0fbe19ec59", null, "ADMIN", "ADMIN" },
+                    { "9078b9d2-471c-427b-870f-532e3d58e530", null, "USER", "USER" }
                 });
 
             migrationBuilder.InsertData(
@@ -209,9 +210,9 @@ namespace TestTime.Migrations
                 columns: new[] { "Id", "Price", "Quantity", "Title", "TotalPrice" },
                 values: new object[,]
                 {
-                    { "1", 74.090000000000003, 55, "HDD 1TB", 411569.95000000001 },
-                    { "2", 190.99000000000001, 102, "HDD SSD 512GB", 1967578.98 },
-                    { "3", 80.319999999999993, 47, "RAM DDR4 16GB", 38127904.0 }
+                    { 1, 74.090000000000003, 55, "HDD 1TB", 411569.95000000001 },
+                    { 2, 190.99000000000001, 102, "HDD SSD 512GB", 1967578.98 },
+                    { 3, 80.319999999999993, 47, "RAM DDR4 16GB", 38127904.0 }
                 });
 
             migrationBuilder.CreateIndex(

@@ -4,44 +4,29 @@
     <p>Are you sure you want to delete the following task?</p>
 
 
-    <form asp-action="Delete" asp-controller="Task" method="post">
+    <form asp-action="DeleteConfirmed" asp-controller="Product" method="post">
         <input type="hidden" asp-for="Id" />
         <button type="submit" class="btn btn-danger">Delete</button>
         <a asp-action="Index" asp-controller="Product" class="btn btn-secondary">Cancel</a>
     </form>*@
 
-@model TestTime.Dto.RoleAndProductDto
-@using Microsoft.AspNetCore.Identity
+@model TestTime.Models.Product
 
-@{
-    ViewData["title"] = "Delete Page";
-}
+<h2>Delete Product</h2>
 
-<div class="container">
-    <form method="post" asp-action="Delete" asp-controller="Product" id="productForm" class="container mt-3">
-        <h1 class="fs-5 text-danger">Delete Product</h1>
-
-        <!-- Hidden Fields -->
-        <input type="hidden" name="userId" value="@Model.Id" />
-        <input type="hidden" name="userName" value="@Model.Name" />
-        <input type="hidden" name="role" value="@Model.Role" />
-        <input type="hidden" name="id" value="@Model.Products.First().Id" />
-
-        <p>Are you sure you want to delete this product?</p>
-
-        <!-- Display Product Information -->
-        <div>
-            <strong>Title:</strong> @Model.Products.First().Title
-        </div>
-        <div>
-            <strong>Quantity:</strong> @Model.Products.First().Quantity
-        </div>
-        <div>
-            <strong>Price:</strong> @Model.Products.First().Price
-        </div>
-
-        <!-- Submit Button -->
-        <button type="submit" class="btn btn-outline-danger">Delete</button>
-        <a asp-action="Index" asp-controller="Product" class="btn btn-secondary">Cancel</a>
+<div>
+    <h4>Are you sure you want to delete this product?</h4>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+    </dl>
+    <form asp-action="DeleteConfirmed" method="post">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a asp-action="Index">Back to List</a>
     </form>
 </div>
