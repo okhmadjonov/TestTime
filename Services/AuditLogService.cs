@@ -4,7 +4,7 @@ using TestTime.Models;
 
 namespace TestTime.Services;
 
-public partial class AuditLogService
+public  class AuditLogService
 {
     private readonly AppDbContext _dbContext;
 
