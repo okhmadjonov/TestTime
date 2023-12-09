@@ -1,17 +1,5 @@
 @model TestTime.Models.Product
 
-    <h1>Delete Confirmation</h1>
-    <p>Are you sure you want to delete the following task?</p>
-
-
-    <form asp-action="DeleteConfirmed" asp-controller="Product" method="post">
-        <input type="hidden" asp-for="Id" />
-        <button type="submit" class="btn btn-danger">Delete</button>
-        <a asp-action="Index" asp-controller="Product" class="btn btn-secondary">Cancel</a>
-<<<<<<< HEAD
-    </form>*@
-
-@model TestTime.Models.Product
 
 <h2>Delete Product</h2>
 
@@ -29,6 +17,5 @@
         <input type="hidden" asp-for="Id" />
         <button type="submit" class="btn btn-danger">Delete</button>
         <a asp-action="Index">Back to List</a>
-=======
->>>>>>> 8caa2bbb374c7ecd022d6eeff06c1775f178a309
+
     </form>
