@@ -25,7 +25,7 @@ namespace TestTime.Controllers
         }
         public async Task<IActionResult> Index(int? page)
         {
-            int pageSize = 10;
+            int pageSize = 5;
             var tasks = await _productRepository.GetAllProducts();
 
             var pageNumber = page ?? 1;

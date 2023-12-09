@@ -37,6 +37,10 @@
       "PackagePath": "staticwebassets\\js\\mvc-grid\\mvc-grid.js"
     },
     {
+      "Id": "C:\\Users\\nemo\\Desktop\\TestTime\\wwwroot\\js\\product.js",
+      "PackagePath": "staticwebassets\\js\\product.js"
+    },
+    {
       "Id": "C:\\Users\\nemo\\Desktop\\TestTime\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

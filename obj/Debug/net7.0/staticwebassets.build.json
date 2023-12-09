@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "QFNDKfB0Bv0QL/x3m9/mcr1keGSfaBWFQ5YYJ0Al72k=",
+  "Hash": "lmbh+9mIQqkDnUZ9bMN8Hr7ZHMwzZ/nkHkh01KrNppI=",
   "Source": "TestTime",
   "BasePath": "_content/TestTime",
   "Mode": "Default",
@@ -1345,6 +1345,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\mvc-grid\\mvc-grid.js"
+    },
+    {
+      "Identity": "C:\\Users\\nemo\\Desktop\\TestTime\\wwwroot\\js\\product.js",
+      "SourceId": "TestTime",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\nemo\\Desktop\\TestTime\\wwwroot\\",
+      "BasePath": "_content/TestTime",
+      "RelativePath": "js/product.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\product.js"
     },
     {
       "Identity": "C:\\Users\\nemo\\Desktop\\TestTime\\wwwroot\\js\\site.js",
