@@ -1,28 +1,50 @@
 ﻿@model TestTime.Dto.ProductDto
 
-<h2>Edit Product</h2>
+<head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
 
-<form asp-action="Edit" method="post">
+<body>
+    <div class="main">
+        <div class="container">
 
+            <h2>Edit Product</h2>
 
-    <div class="form-group">
-        <label asp-for="Title"></label>
-        <input asp-for="Title" class="form-control" placeholder="Title" required />
-        <span asp-validation-for="Title" class="text-danger"></span>
+            <form asp-action="Edit" method="post" asp-controller="Product" id="productForm">
+
+                <div id="titleAlert" class="alert alert-danger" role="alert" style="display: none;">
+                    Please enter a valid title. Allowed characters: alphanumeric and space.
+                </div>
+
+                <div id="quantityAlert" class="alert alert-danger" role="alert" style="display: none;">
+                    Please enter a valid quantity. Allowed characters: numbers.
+                </div>
+
+                <div id="priceAlert" class="alert alert-danger" role="alert" style="display: none;">
+                    Please enter a valid price. Allowed characters: numbers and dot for decimals.
+                </div>
+
+                @*<input asp-for="Id" type="hidden" />*@
+
+                <input asp-for="Title" oninput="validateTitle(this, 'titleAlert')" onfocus="hideValidationAlert('titleAlert')" value="@Model.Title" id="titleInput" placeholder="Title" name="Title" class="form-control w-100 my-3 px-3" required />
+
+                <input asp-for="Quantity" oninput="validateQuantity(this, 'quantityAlert')" onfocus="hideValidationAlert('quantityAlert')" value="@Model.Quantity" id="quantityInput" placeholder="Quantity" name="Quantity" class="form-control w-100 my-3 px-3" title="Enter a valid integer or double" required />
+
+                <input asp-for="Price" oninput="validatePrice(this, 'priceAlert')" onfocus="hideValidationAlert('priceAlert')" id="priceInput" type="number" value="@Model.Price" placeholder="Price" name="Price" class="form-control w-100 my-3 px-3" title="Enter a valid double" required />
+
+                <br />
+                <br />
+                <button type="submit" class="btn btn-primary">Update Product</button>
+                <a class="btn btn-secondary" asp-action="Index">Back to List</a>
+            </form>
+        </div>
     </div>
-    <div class="form-group">
-        <label asp-for="Quantity"></label>
-        <input asp-for="Quantity" class="form-control" placeholder="Quantity" required />
-        <span asp-validation-for="Quantity" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Price"></label>
-        <input asp-for="Price" class="form-control" placeholder="Price" required />
-        <span asp-validation-for="Price" class="text-danger"></span>
-    </div>
 
-    <br />
-    <br />
-    <button type="submit" class="btn btn-primary">Update Product</button>
-    <a class="btn btn-secondary" asp-action="Index">Back to List</a>
-</form>
+</body>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js"></script>
+<script src="~/js/product.js"></script>
+</html>
