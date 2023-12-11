@@ -1,35 +1,28 @@
 ﻿@model TestTime.Dto.ProductDto
-    <head>
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
-    </head>
-    <body>
-        <h2>Add Product</h2>
 
-        <form asp-action="Add" method="post">
-            <div class="form-group">
-                <label asp-for="Title"></label>
-                <input asp-for="Title" class="form-control" oninput="validateTitle(this, 'titleAlert')" required placeholder="Title" />
-                <span asp-validation-for="Title" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Price"></label>
-                <input asp-for="Price"  class="form-control" oninput="validateQuantity(this, 'quantityAlert')" required placeholder="Price" />
-                <span asp-validation-for="Price" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Quantity"></label>
-                <input asp-for="Quantity" class="form-control" oninput="validateQuantity(this, 'quantityAlert')" required placeholder="Quantity" />
-                <span asp-validation-for="Quantity" class="text-danger"></span>
-            </div>
-            <br />
-            <br />
-            <button type="submit" class="btn btn-primary">Add Product</button>
-            <a class="btn btn-secondary" asp-action="Index">Back to List</a>
-        </form>
 
-    </body>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js"></script>
-    <script src="~/js/product.js"></script>
+
+<h2>Add Product</h2>
+
+
+<form asp-action="Add" method="post">
+    <div class="form-group">
+        <label asp-for="Title"></label>
+        <input asp-for="Title" class="form-control" placeholder="Title" required />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Price"></label>
+        <input asp-for="Price" class="form-control" placeholder="Price" required/>
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Quantity"></label>
+        <input asp-for="Quantity" class="form-control" placeholder="Quantity" required />
+        <span asp-validation-for="Quantity" class="text-danger"></span>
+    </div>
+    <br />
+    <br />
+    <button type="submit" class="btn btn-primary">Add Product</button>
+    <a class="btn btn-secondary" asp-action="Index">Back to List</a>
+</form>

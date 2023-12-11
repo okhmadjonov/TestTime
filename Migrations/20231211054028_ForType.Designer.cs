@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TestTime.Data;
@@ -11,9 +12,11 @@ using TestTime.Data;
 namespace TestTime.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231211054028_ForType")]
+    partial class ForType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,13 +53,13 @@ namespace TestTime.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "972d35d9-dd45-44a0-bbf6-34f11a9dffff",
+                            Id = "b1effd10-4c01-47d2-ba3e-1223966515d9",
                             Name = "ADMIN",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "12fd3d55-99a5-4dbe-b36b-fdea224b11bf",
+                            Id = "d73229d3-3088-4530-beb5-a3aab4504b3a",
                             Name = "USER",
                             NormalizedName = "USER"
                         });
@@ -216,8 +219,8 @@ namespace TestTime.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<double>("Price")
-                        .HasColumnType("double precision");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("numeric");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("integer");
@@ -236,7 +239,7 @@ namespace TestTime.Migrations
                         new
                         {
                             Id = 1,
-                            Price = 74.090000000000003,
+                            Price = 74.09m,
                             Quantity = 55,
                             Title = "HDD 1TB",
                             TotalPrice = 411569.95000000001
@@ -244,7 +247,7 @@ namespace TestTime.Migrations
                         new
                         {
                             Id = 2,
-                            Price = 190.99000000000001,
+                            Price = 190.99m,
                             Quantity = 102,
                             Title = "HDD SSD 512GB",
                             TotalPrice = 1967578.98
@@ -252,7 +255,7 @@ namespace TestTime.Migrations
                         new
                         {
                             Id = 3,
-                            Price = 80.319999999999993,
+                            Price = 80.32m,
                             Quantity = 47,
                             Title = "RAM DDR4 16GB",
                             TotalPrice = 38127904.0

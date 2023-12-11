@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TestTime.Data;
@@ -11,9 +12,11 @@ using TestTime.Data;
 namespace TestTime.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231211052052_NewMigForAddValidation")]
+    partial class NewMigForAddValidation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,13 +53,13 @@ namespace TestTime.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "972d35d9-dd45-44a0-bbf6-34f11a9dffff",
+                            Id = "e8f53f88-78c3-4384-b3fe-8b5c9ff32637",
                             Name = "ADMIN",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "12fd3d55-99a5-4dbe-b36b-fdea224b11bf",
+                            Id = "e07f3d15-4c6d-4c62-bf25-cec2e72cc485",
                             Name = "USER",
                             NormalizedName = "USER"
                         });

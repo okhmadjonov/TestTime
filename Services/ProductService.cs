@@ -36,17 +36,25 @@ namespace TestTime.Services
         }
 
 
-        public async Task Add(string userId, string userName, ProductDto productDto)
+        public async Task<(bool Success, string ErrorMessage)> Add(string userId, string userName, ProductDto productDto)
         {
+            if (!IsPriceValid(productDto.Price))
+            {
+                return (false, "Price must be a valid number");
+            }
+
             var product = new Product
             {
                 Title = productDto.Title,
                 Price = productDto.Price,
                 Quantity = productDto.Quantity,
-                TotalPrice = await CalculateTotalPrice(productDto.Quantity, productDto.Price)
+                TotalPrice = await CalculateTotalPrice(productDto.Quantity, (double)productDto.Price)
             };
+
             _context.Products.Add(product);
             await _context.SaveChangesAsync(userId, userName);
+
+            return (true, null); 
         }
 
 
@@ -60,7 +68,7 @@ namespace TestTime.Services
                 product.Title = productDto.Title;
                 product.Price = productDto.Price;
                 product.Quantity = productDto.Quantity;
-                product.TotalPrice = (productDto.Quantity * productDto.Price) * (1 + Convert.ToDouble(vat));
+                product.TotalPrice = (double)(productDto.Quantity * productDto.Price) * (1 + Convert.ToDouble(vat));
                 _context.Entry(product).State = EntityState.Modified;
                 await _context.SaveChangesAsync(userId, userName);
             }
@@ -86,6 +94,13 @@ namespace TestTime.Services
 
             return Task.FromResult((quantity * price) * (1 + Convert.ToDouble(vat)));
         }
+
+
+        private bool IsPriceValid(object price)
+        {
+            return price is double || price is decimal || price is int;
+        }
+
 
     }
 }
