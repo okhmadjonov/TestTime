@@ -1,6 +1,6 @@
 # TestTime
 
-Task Controlling App.
+Product Controlling App.
 This project is built on Windows 10 OS.
 
 ## Prerequisite
