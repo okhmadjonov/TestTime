@@ -19,7 +19,7 @@
                     @if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole("ADMIN"))
                     {
                         <div class="add__btn-div">
-                            <a style="padding:8px 50px; text-decoration:none" asp-controller="Product" asp-action="Add" class="btn btn-info">Add Product</a>
+                            <a style="padding:8px 50px; text-decoration:none" asp-controller="Product" asp-action="Add" class="btn btn-success">Add Product</a>
                         </div>
                     }
 
@@ -27,7 +27,7 @@
                     @if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole("ADMIN"))
                     {
                         <div style="margin:10px">
-                            <a style="padding:8px 50px; text-decoration:none" class="btn btn-danger" asp-action="Index" asp-controller="Audit">Audit</a>
+                            <a style="padding:8px 50px; text-decoration:none" class="btn btn-secondary" asp-action="Index" asp-controller="Audit">Audit</a>
                         </div>
                     }
                 </div>
@@ -41,7 +41,7 @@
                     <table class="table" id="productsTable">
                         <thead>
                             <tr>
-                                <th>Id</th>
+                                <th>#</th>
                                 <th>Title</th>
                                 <th>Quantity</th>
                                 <th>Price</th>

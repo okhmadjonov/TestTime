@@ -4,7 +4,6 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
-
 <body>
     <div class="main">
         <div class="container">
@@ -31,7 +30,7 @@
 
                 <input asp-for="Quantity" oninput="validateQuantity(this, 'quantityAlert')" onfocus="hideValidationAlert('quantityAlert')" value="@Model.Quantity" id="quantityInput" placeholder="Quantity" name="Quantity" class="form-control w-100 my-3 px-3" title="Enter a valid integer or double" required />
 
-                <input asp-for="Price" oninput="validatePrice(this, 'priceAlert')" onfocus="hideValidationAlert('priceAlert')" id="priceInput" type="number" value="@Model.Price" placeholder="Price" name="Price" class="form-control w-100 my-3 px-3" title="Enter a valid double" required />
+                <input asp-for="Price" oninput="validatePrice(this, 'priceAlert')" onfocus="hideValidationAlert('priceAlert')" value="@Model.Price" id="priceInput" placeholder="Price" name="Price" class="form-control w-100 my-3 px-3" title="Enter a valid double" required />
 
                 <br />
                 <br />
@@ -47,4 +46,4 @@
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/site.js"></script>
 <script src="~/js/product.js"></script>
-</html>
+

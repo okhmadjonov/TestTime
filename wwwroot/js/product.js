@@ -18,34 +18,37 @@ function validateQuantity(inputElement, alertId) {
     } else {
         hideValidationAlert(alertId);
     }
-}
+    var quantity = parseFloat(inputElement.value);
 
-//function validatePrice(inputElement, alertId) {
-//    var pattern = /^[0-9]+(\.[0-9]+)?$/;  // Updated regex pattern
-//    var inputValue = inputElement.value;
-
-//    // If the input starts with a dot, replace it with '0.'
-//    if (inputValue.startsWith('.') && inputValue.length === 1) {
-//        inputElement.value = '0.';
-//        hideValidationAlert(alertId);
-//    } else if (!pattern.test(inputValue)) {
-//        showValidationAlert(alertId);
-//        inputElement.value = inputValue.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
-//    } else {
-//        hideValidationAlert(alertId);
-//    }
-//}
-
-function validatePrice(inputElement, alertId) {
-    var inputValue = inputElement.value;
-
-    // Check if the input value is not a number
-    if (isNaN(inputValue)) {
-        showValidationAlert(alertId);
-        inputElement.value = ''; // Clear the input field if not a number
+    if (isNaN(quantity) || quantity <= 0) {
+        displayValidationAlert(alertId);
+        input.value = ''; // Clear the invalid value
     } else {
         hideValidationAlert(alertId);
     }
+}
+
+
+
+function validatePrice(inputElement, alertId) {
+
+    var pattern = /^[0-9]*$/;
+    var inputValue = inputElement.value;
+    if (!pattern.test(inputValue)) {
+        showValidationAlert(alertId);
+        inputElement.value = inputValue.replace(/[^0-9]/g, '');
+    } else {
+        hideValidationAlert(alertId);
+    }
+    var quantity = parseFloat(inputElement.value);
+
+    if (isNaN(quantity) || quantity <= 0) {
+        displayValidationAlert(alertId);
+        input.value = ''; // Clear the invalid value
+    } else {
+        hideValidationAlert(alertId);
+    }
+
 }
 
 
