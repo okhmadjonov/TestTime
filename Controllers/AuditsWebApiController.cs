@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 using TestTime.Models;
 using TestTime.Services;
 
@@ -15,7 +16,13 @@ namespace TestTime.Controllers
         public AuditsWebApiController(AuditLogService auditLogService) => _auditLogService = auditLogService;
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Audit>>> GetAudits(DateTime? startDate = null, DateTime? endDate = null)
+        public async Task<ActionResult<IEnumerable<Audit>>> GetAudits([FromQuery(Name = "startDate")]
+                               [SwaggerParameter("Start date for filtering audits")]
+                               DateTime? startDate = null,
+
+                               [FromQuery(Name = "endDate")]
+                               [SwaggerParameter("End date for filtering audits")]
+                               DateTime? endDate = null)
         {
             if (!startDate.HasValue && !endDate.HasValue)
             {
@@ -29,6 +36,14 @@ namespace TestTime.Controllers
             {
                 startDate = DateTime.MinValue;
             }
+            if (startDate.HasValue && endDate.HasValue && startDate > endDate)
+            {
+                // Swap the values if the start date is greater than the end date
+                var temp = startDate;
+                startDate = endDate;
+                endDate = temp;
+            }
+
 
             var audits = await _auditLogService.Filter(startDate, endDate);
             return Ok(audits);

@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TestTime")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8248fa55b89d7df6557295e268790f2307ea2dcd")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fc1dfecfe02ef1ae72cad57e050224460512090b")]
 [assembly: System.Reflection.AssemblyProductAttribute("TestTime")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TestTime")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
