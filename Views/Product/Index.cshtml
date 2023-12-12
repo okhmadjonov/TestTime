@@ -26,8 +26,12 @@
                     <!-- Audit button -->
                     @if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole("ADMIN"))
                     {
-                        <div style="margin:10px">
-                            <a style="padding:8px 50px; text-decoration:none" class="btn btn-secondary" asp-action="Index" asp-controller="Audit">Audit</a>
+                        @*<div style="margin:10px">
+                                <a style="padding:8px 50px; text-decoration:none" class="btn btn-secondary" asp-action="Index" asp-controller="Audit">Audit</a>
+                            </div>*@
+                        <div style="margin-right:10px">
+
+                            <button class="btn bg-info" onclick="redirectToSwagger()">Swagger</button>
                         </div>
                     }
                 </div>
@@ -107,5 +111,11 @@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="~/js/audit.js"></script>
+    <script>
+        function redirectToSwagger() {
+            window.location.href = "https://localhost:7027/swagger/index.html";
+        }
+    </script>
 </body>
 </html>
